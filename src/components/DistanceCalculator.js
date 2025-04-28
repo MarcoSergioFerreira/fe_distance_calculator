@@ -22,19 +22,15 @@ const DistanceCalculator = () => {
         destination: toAddress
       });
 
-      // Update state with the formatted addresses and distance
       setFormattedFrom(response.data.origin.formatted_address);
       setFormattedTo(response.data.destination.formatted_address);
       setDistance(response.data.distance_km);
     } catch (err) {
       if (err.response) {
-        // Server responded with an error
         setError(err.response.data.message || 'Error calculating distance. Please try again.');
       } else if (err.request) {
-        // Request was made but no response received
         setError('Unable to connect to the server. Please check your connection and try again.');
       } else {
-        // Something else happened
         setError('An unexpected error occurred. Please try again.');
       }
       console.error('Error details:', err);
